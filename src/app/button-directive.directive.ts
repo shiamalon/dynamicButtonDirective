@@ -1,6 +1,6 @@
 import {
   Directive, ElementRef, HostListener, Input, TemplateRef, ViewContainerRef, OnInit,
-  ComponentRef, ComponentFactoryResolver, Renderer, AfterViewInit
+  ComponentRef, ComponentFactoryResolver, AfterViewInit
 } from '@angular/core';
 import { ButtonComponent } from './button/button.component';
 
@@ -14,17 +14,14 @@ export class ButtonDirectiveDirective implements OnInit {
   constructor(
     private viewContainerRef: ViewContainerRef,
     private resolver: ComponentFactoryResolver,
-    private elRef: ElementRef,
-    private renderer: Renderer
+    private elRef: ElementRef
   ) { }
 
 
   ngOnInit() {
-    this.renderer.setElementClass(this.elRef.nativeElement, 'ps-tooltip-trigger', true); // ok
     // factory comp resolver
     const factory = this.resolver.resolveComponentFactory(ButtonComponent);
     // create component
-
     this.button = this.viewContainerRef.createComponent(factory);
     console.log(this.button);
     // set content of the component
